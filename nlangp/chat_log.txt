@@ -1,0 +1,68 @@
+1 (22:53:38) kriston: What is username/password for Fedora 18 LXDE spin?  I found it nowhere.
+2 (22:55:06) kriston: (live CD naturally)
+3 (22:55:41) jamielennox left the room (quit: Remote host closed the connection).
+4 (22:56:05) satellit_e: live user  no password I think
+5 (22:58:48) sayan [~sayanchow@fedora/sayan] entered the room.
+6 (22:59:21) kriston: I can log into text console fine.  The lxdm greeter wants a user and password.  There isn't anyone called "live" or "user" anywhere in /etc/passwd.  Just root but it won't let root in even if I give root a real password.  WTF?
+7 (22:59:57) the_mgt left the room (quit: Ping timeout: 264 seconds).
+8 (23:00:18) majorlinux: kriston, I think he meant "liveuser"
+9 (23:00:31) kriston: I know, "liveuser" is not in /etc/passwd either.
+10  (23:00:55) kriston: Thanks for the tip though.
+11  (23:01:01) majorlinux: Couldn't you just create the user, then?
+12  (23:01:10) majorlinux: Nevermind...
+13  (23:01:18) sayan left the room (quit: Max SendQ exceeded).
+14  (23:01:20) kriston: What USB installer do we use for Fedora spins?  I've ben using pendrivelinux but it might be corrupting things.
+15  (23:01:34) kriston: majorlinux: Thanks, I understand.
+16  (23:01:38) majorlinux: I use livecd-tools (actually using it now)
+17  (23:02:08) majorlinux: livecd-iso-to-disk
+18  (23:02:09) kriston: If I'm on a Windows host, what would I use?  I think pendrivelinux is corrupting things too much.  I'm having too many problems with usb installers.
+19  (23:02:43) kriston: Like, a half-dozen LXDE spins, remixes, and releases do not act like the online docs suggest I should expect.
+20  (23:02:51) majorlinux: https://fedorahosted.org/liveusb-creator/
+21  (23:03:09) kriston: Thank you I will give that a go.  I was about to doubt my own sanity.
+22  (23:03:16) sayan [~sayanchow@fedora/sayan] entered the room.
+23  (23:03:27) kriston: Well I always doubted my own sanity.
+24  (23:03:41) majorlinux: That's to be expected when using Linux sometimes...hehe
+25  (23:03:53) jcape left the room (quit: Ping timeout: 252 seconds).
+26  (23:04:14) kriston: I mean when at least three Linuxes say to log in as a certain user, and that user is clearly not in /etc/passwd, it makes me lose my mind.
+27  (23:04:17) kriston: Thanks!!!
+28  (23:04:26) Forty-3 left the room (quit: Ping timeout: 248 seconds).
+29  (23:04:46) mayorgalinux left the room (quit: Remote host closed the connection).
+30  (23:07:16) sayan left the room (quit: Read error: Connection reset by peer).
+31  (23:07:31) waz0wski left the room (quit: Quit: waz0wski).
+32  (23:07:33) waz0wski_ is now known as waz0wski
+33  (23:09:15) nathan28: i wonder what those 'three Linuxes' are
+34  (23:10:26) kriston: nathan28: Clever.  Distributions, naturally.  Ubuntu, Fedora, and Debian.
+35  (23:10:54) nathan28: it's been a long time since i used a liveCD anything
+36  (23:11:02) niteshnarayanlal [~nitesh@fedora/niteshnarayanlal] entered the room.
+37  (23:11:05) kriston: Of course it has.
+38  (23:12:22) kriston: Yep, Pendrivelinux corrupted the living crap out of the image.  It works now.  Thanks, majorlinux
+39  (23:12:44) nathan28: cleanly unmount next time
+40  (23:12:45) majorlinux: kriston, Glad I was able to help.
+41  (23:12:51) kriston: nathan28: No, naturally, that's wrong.
+42  (23:15:10) nathan28: or just use dd on a bootable image?
+43  (23:15:15) kriston: Ubuntu and friends point users to Pendrivelinux for usb disk installers.  Unfortunately, it does extra modifications when it creates the image.  Ubuntu isn't affected but others are.
+44  (23:15:37) kriston: Windows, nathan28.  I'm not inclined to bother with rawrite or dd here unless you have a known-good solution for that?
+45  (23:15:38) fenrus02: use dd.
+46  (23:15:44) kriston: I did say Windows.
+47  (23:15:46) nathan28: dd
+48  (23:15:48) nathan28: dd.exe
+49  (23:15:48) fenrus02: and?
+50  (23:15:50) fenrus02: winblows has dd.
+51  (23:16:05) fenrus02: use the live images found in the /topic here.
+52  (23:16:08) kriston: Known-good URL for downloading dd.exe or GTFO.
+53  (23:16:11) fenrus02: they have updates applied, and will save you time.
+54  (23:16:15) nathan28: kriston: google
+55  (23:16:23) nathan28: and a compiler
+56  (23:16:25) fenrus02: kriston, language. this is a family channel.
+57  (23:16:27) kriston: nathan28: No.  Known-good URL is not "google"
+58  (23:16:39) nathan28: gcc is pretty good i hear
+59  (23:16:44) StillBob: lazy is demanding
+60  (23:17:02) kriston: And all of our 132 Windowss machine doesn't have a compiler.  Did you want to help or did you not?
+61  (23:17:15) fenrus02: kriston, calm down, or take a break.
+62  (23:17:34) kriston: Every IRC conversation turns out the same way.  Why are you even here?
+63  (23:17:42) fenrus02: @quiet15m kriston
+64  (23:17:42) mode (+q kriston!*@*) by fedbot
+65  (23:17:43) fedbot: kriston, You have been quieted in this channel temporarily. Please read the FAQ in the channel topic and consider changing your approach and/or the behavior that is disrupting the channel. If you feel this action was in error, please file a ticket at https://fedorahosted.org/irc-support-sig/
+66  (23:17:44) StillBob: We know why you are
+67  (23:17:47) nathan28: http://stackoverflow.com/questions/6394755/how-to-install-gcc-on-windows-7-machine
+68  (23:17:48) fenrus02: break time it is.
