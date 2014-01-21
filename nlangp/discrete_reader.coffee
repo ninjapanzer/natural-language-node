@@ -1,5 +1,7 @@
 fs = require 'fs'
 lineReader = require 'line-reader'
+redis = require("redis"),
+client = redis.createClient();
 
 words = {}
 mostCommonWord = ''
