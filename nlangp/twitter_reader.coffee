@@ -17,14 +17,15 @@ class DictionaryLoader
     
 
   streamTwitter= ->
-    twit = new twitter({
-      consumer_key: 'Lyw3Jlh3NMlTh1qxgV2EHw',
-      consumer_secret: 'tCGZYViupuKDmZG2u3FvP9sZ3UCSLeDD5nBBnjdVUQ',
-      access_token_key: '10940832-ArsonQwANGqd3dmucMPQTOQEWc1VBcgjVzW3MWPfq',
-      access_token_secret: '7I8gJaHCwdWzfUHZCTHOaGpDitR904oZOWc20VWFrzPJ0'
-    });
-
-    twit.stream "statuses/sample", (stream) ->
+    fs.readFile './twitter_config.json',{encodinf:String} , (err, data)->
+      conf = JSON.parse(data)
+      twit = new twitter({
+        consumer_key: conf.consumer_key,
+        consumer_secret: conf.consumer_secret,
+        access_token_key: conf.access_token_key,
+        access_token_secret: conf.access_token_secret
+      })
+      twit.stream "statuses/sample", (stream) ->
       stream.on "data", (data) ->
         processLine data.text unless data.text == undefined
 
