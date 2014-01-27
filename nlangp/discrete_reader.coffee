@@ -1,36 +1,47 @@
-fs = require 'fs'
-lineReader = require 'line-reader'
-redis = require("redis"),
-client = redis.createClient();
+sys = require('sys')
+redis = require("redis")
+{EventEmitter} = require('events')
+{spawn} = require('child_process')
 
-words = {}
-mostCommonWord = ''
-topCount = 0
+{FileReader} = require('./file_reader.coffee')
+{DictionaryLoader} = require('./twitter_reader.coffee')
 
-printWords = ->
-  console.log words
+#f = new FileReader('sentences.txt')
+emitter = new EventEmitter
 
-countWords = (line)->
-  line.map (elem)->
-    count = ++words[elem] || 0
-    if count > topCount
-      topCount = count
-      mostCommonWord = elem
-    words[elem] = count
+#console.log "hi"
 
-printMostCommonWord = ->
-  console.log mostCommonWord
-  console.log topCount
+puts = (error, stdout, stderr)->
+  sys.puts(stdout)
 
-afterRead = ->
-  #printWords()
-  printMostCommonWord()
+redisProcess = spawn('redis-server', ['redis.conf']);
 
-processFile = (line, last) ->
-  topCount = 0
-  mostCommonWord = ''
-  countWords line.split(' ')
-  afterRead() if last
+spawnDataWatcher= (data)->
+  string = data.toString()
+  console.log('stdout: ' + data);
+  if /The server is now ready to accept connections on port/.test string
+    emitter.emit("redis_up")
+  if /Address already in use/.test string
+    emitter.emit("redis_running")
 
-lineReader.eachLine('sentences.txt', processFile)
-lineReader.eachLine('chat_log.txt', processFile)
+redisProcess.stdout.on 'data', spawnDataWatcher
+
+startProcessing = ->
+  loader = new DictionaryLoader()
+
+redis_up_callback = ->
+  console.log "redis up"
+  emitter.removeListener('redis_up', redis_up_callback)
+  redisProcess.stdout.removeListener 'data', spawnDataWatcher
+  startProcessing()
+
+emitter.on 'redis_up', redis_up_callback
+
+emitter.on 'redis_running', redis_up_callback
+
+process.on 'exit',
+  ->
+    redisProcess.kill(0)
+
+    #lineReader.eachLine('sentences.txt', Reader.processFile)
+    #ineReader.eachLine('chat_log.txt', Reader.processFile)

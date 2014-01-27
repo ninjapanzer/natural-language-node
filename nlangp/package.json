@@ -6,7 +6,9 @@
   "dependencies": {
     "coffee-script": "~1.6.3",
     "line-reader": "~0.2.3",
-    "redis": "~0.10.0"
+    "redis": "~0.10.0",
+    "oauth": "~0.9.11",
+    "twitter": "~0.2.5"
   },
   "devDependencies": {},
   "engines": {
