@@ -1,6 +1,7 @@
 util = require('util')
 redis = require('redis')
-twitter = require('twitter');
+fs = require('fs')
+twitter = require('twitter')
 
 
 
@@ -26,8 +27,8 @@ class DictionaryLoader
         access_token_secret: conf.access_token_secret
       })
       twit.stream "statuses/sample", (stream) ->
-      stream.on "data", (data) ->
-        processLine data.text unless data.text == undefined
+        stream.on "data", (data) ->
+          processLine data.text unless data.text == undefined
 
   processLine= (line) ->
     topCount = 0
